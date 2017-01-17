@@ -18,8 +18,12 @@ class ViewController: UIViewController {
         case Subtract = "-"
         case Add = "+"
         case Percent = "%"
-        case Empty = "Empty"
-        
+        case Empty = "empty"
+        case Pi = "pi"
+        case Sqrt = "sqrt"
+        case Power = "power"
+        case Factorial = "factorial"
+        case Mod = "mod"
     }
     
     var runningNumber = ""
