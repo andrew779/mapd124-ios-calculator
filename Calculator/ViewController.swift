@@ -3,6 +3,7 @@
 //  Calculator
 //
 //  Created by Wenzhong Zheng on 2017-01-16.
+//  Description This is a Simple Calculator App
 //  Copyright © 2017 Wenzhong. All rights reserved.
 //
 
@@ -35,16 +36,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    //Display values when number button pressed
     @IBAction func numberPressed(_ sender: UIButton){
         runningNumber += "\(sender.tag)"
         
         updateText(updateNum: runningNumber)
     }
-    
+    //Formating passing values
     func updateText(updateNum: String) {
         guard let number:Double = Double(updateNum) else {
             return
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         
         outputLbl.text = formatter.string(from: num)
     }
-    
+    //proceed when reset button clicked
     @IBAction func clearDidTouch(_ sender: UIButton) {
         runningNumber = ""
         currentOperation = Operation.Empty
@@ -66,14 +66,14 @@ class ViewController: UIViewController {
         result = ""
         outputLbl.text = "0"
     }
-    
+    //proceed when dot button clicked
     @IBAction func dotDidTouch(_ sender: UIButton) {
         if (!(outputLbl.text?.contains("."))!){
             runningNumber = (outputLbl.text?.appending("."))!
             outputLbl.text = runningNumber
         }
     }
-    
+    //proceed when +/- sign button clicked
     @IBAction func signButtonDidTouch(_ sender: UIButton) {
         if (!(outputLbl.text?.contains("-"))!){
             runningNumber = "-\(outputLbl.text!)"
@@ -85,6 +85,7 @@ class ViewController: UIViewController {
         outputLbl.text = runningNumber
     }
     
+    //call processOperation function when one operator pressed
     @IBAction func operatorPressed(_ sender: UIButton){
         if sender.currentTitle == "+" {
             processOperation(operation: .Add)
@@ -101,7 +102,7 @@ class ViewController: UIViewController {
         }
     }
     
-
+    //process calculation logics and update value to the output label
     func processOperation(operation: Operation){
         if currentOperation != Operation.Empty{
             
